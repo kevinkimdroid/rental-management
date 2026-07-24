@@ -18,9 +18,10 @@ $groups = [
 
 <aside class="sidebar fixed inset-y-0 left-0 z-50 flex w-[19rem] flex-col transition-transform duration-300 lg:translate-x-0" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
     <div class="sidebar-brand">
-        <a href="{{ route('dashboard') }}" class="block">
-            @include('partials.brand-logo', ['href' => route('dashboard'), 'height' => 44])
-        </a>
+        @include('partials.brand-logo', ['href' => route('dashboard'), 'height' => 44])
+        <button type="button" @click="sidebarOpen = false" class="sidebar-close lg:hidden" aria-label="Close menu">
+            <x-icon name="x-mark" class="h-5 w-5" />
+        </button>
     </div>
 
     <nav class="sidebar-nav flex-1 overflow-y-auto">
@@ -29,7 +30,7 @@ $groups = [
             <div class="mb-6 space-y-1">
                 @foreach ($items as $item)
                     @php $active = request()->routeIs($item['pattern']); @endphp
-                    <a href="{{ route($item['route']) }}" @class(['sidebar-link', 'sidebar-link-active' => $active])>
+                    <a href="{{ route($item['route']) }}" @click="sidebarOpen = false" @class(['sidebar-link', 'sidebar-link-active' => $active])>
                         <span class="sidebar-link-icon">
                             <x-icon :name="$item['icon']" class="h-5 w-5" />
                         </span>

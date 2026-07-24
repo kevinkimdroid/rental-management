@@ -27,7 +27,7 @@ $tag = $href ? 'a' : 'div';
     <div class="flex items-end justify-between gap-3">
         <div>
             <p class="text-sm font-semibold uppercase tracking-wide text-zinc-500">{{ $label }}</p>
-            <p class="mt-1 text-4xl font-bold tabular-nums tracking-tight text-zinc-900">{{ $value }}</p>
+            <p class="mt-1 text-3xl font-bold tabular-nums tracking-tight text-zinc-900 sm:text-4xl">{{ $value }}</p>
             @if ($hint)
                 <p class="mt-1 text-sm text-zinc-400">{{ $hint }}</p>
             @endif

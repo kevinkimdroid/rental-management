@@ -14,7 +14,7 @@
         $isEmpty = $propertyCount === 0 && $unitCount === 0;
     @endphp
 
-    <div class="dash mx-auto max-w-7xl space-y-6">
+    <div class="dash mx-auto max-w-7xl space-y-5 sm:space-y-6">
         {{-- Welcome strip --}}
         <div class="dash-welcome">
             <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -28,11 +28,11 @@
                         @endif
                     </p>
                 </div>
-                <div class="flex shrink-0 flex-wrap gap-3">
-                    <a href="{{ route('properties.create') }}" class="btn-primary">
+                <div class="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+                    <a href="{{ route('properties.create') }}" class="btn-primary w-full justify-center sm:w-auto">
                         <x-icon name="plus" class="h-5 w-5" /> Add property
                     </a>
-                    <a href="{{ route('payments.create') }}" class="btn-secondary">
+                    <a href="{{ route('payments.create') }}" class="btn-secondary w-full justify-center sm:w-auto">
                         <x-icon name="banknotes" class="h-5 w-5" /> Record payment
                     </a>
                 </div>
@@ -48,12 +48,12 @@
                     <h2 class="text-xl font-semibold text-zinc-900">Build your portfolio</h2>
                     <p class="mt-1 text-base text-zinc-500">Add a property, create units, and start tracking rent — it only takes a few minutes.</p>
                 </div>
-                <a href="{{ route('properties.create') }}" class="btn-primary shrink-0">Add your first property</a>
+                <a href="{{ route('properties.create') }}" class="btn-primary w-full shrink-0 justify-center sm:w-auto">Add your first property</a>
             </div>
         @endif
 
         {{-- Stats --}}
-        <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-4 min-[520px]:grid-cols-2 lg:grid-cols-4">
             <x-stat-card label="Properties" :value="$propertyCount" icon="building" color="brand" accent="brand" :href="route('properties.index')" />
             <x-stat-card label="Total units" :value="$unitCount" icon="squares" color="sky" accent="sky" :href="route('units.index')" />
             <x-stat-card label="Tenants" :value="$tenantCount" icon="users" color="indigo" accent="indigo" :href="route('tenants.index')" />
@@ -72,13 +72,13 @@
                     <a href="{{ route('units.index') }}" class="dash-link">Units →</a>
                 </div>
                 <div class="dash-card-body">
-                    <div class="flex items-center gap-8">
+                    <div class="flex flex-col items-center gap-6 sm:flex-row sm:items-center">
                         <div class="dash-ring" style="--pct: {{ $occupancy }}">
                             <div class="dash-ring-inner">
                                 <span class="text-2xl font-bold tabular-nums text-zinc-900">{{ $occupancy }}%</span>
                             </div>
                         </div>
-                        <div class="grid flex-1 gap-3">
+                        <div class="grid w-full flex-1 gap-3 sm:w-auto">
                             <div class="dash-pill">
                                 <span class="dash-pill-dot bg-brand-500"></span>
                                 <span class="dash-pill-label">Occupied</span>
@@ -113,12 +113,12 @@
                     <a href="{{ route('payments.index') }}" class="dash-link">Payments →</a>
                 </div>
                 <div class="dash-card-body flex flex-col justify-between">
-                    <p class="text-4xl font-bold tabular-nums tracking-tight text-zinc-900">
+                    <p class="text-3xl font-bold tabular-nums tracking-tight text-zinc-900 sm:text-4xl">
                         KES {{ number_format($rentDue, 0) }}
                     </p>
-                    <div class="mt-6 flex flex-wrap gap-3">
-                        <a href="{{ route('payments.create') }}" class="btn-primary">Record payment</a>
-                        <a href="{{ route('payments.index') }}" class="btn-secondary">View all</a>
+                    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                        <a href="{{ route('payments.create') }}" class="btn-primary w-full justify-center sm:w-auto">Record payment</a>
+                        <a href="{{ route('payments.index') }}" class="btn-secondary w-full justify-center sm:w-auto">View all</a>
                     </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@
                                 <p class="truncate font-semibold text-zinc-900 group-hover:text-brand-700">{{ $payment->lease->tenant->full_name }}</p>
                                 <p class="text-sm text-zinc-500">Due {{ $payment->due_date->format('M j, Y') }}</p>
                             </div>
-                            <div class="text-right">
+                            <div class="dash-row-meta">
                                 <p class="font-bold tabular-nums text-zinc-900">KES {{ number_format($payment->amount, 0) }}</p>
                                 <x-badge :color="match($payment->status) { 'paid' => 'green', 'overdue' => 'red', default => 'yellow' }">{{ $payment->status }}</x-badge>
                             </div>
@@ -169,7 +169,7 @@
                                 <p class="truncate font-semibold text-zinc-900 group-hover:text-brand-700">{{ $request->title }}</p>
                                 <p class="truncate text-sm text-zinc-500">{{ $request->unit->property->name }} · Unit {{ $request->unit->unit_number }}</p>
                             </div>
-                            <div class="flex shrink-0 flex-col items-end gap-1">
+                            <div class="dash-row-badges">
                                 <x-badge :color="match($request->priority) { 'high' => 'red', 'medium' => 'yellow', default => 'slate' }">{{ $request->priority }}</x-badge>
                                 <x-badge :color="match($request->status) { 'resolved' => 'green', 'in_progress' => 'blue', default => 'slate' }">{{ str_replace('_', ' ', $request->status) }}</x-badge>
                             </div>

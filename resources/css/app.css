@@ -13,6 +13,12 @@
     body {
         @apply text-base leading-relaxed text-zinc-800;
     }
+
+    @media (max-width: 639px) {
+        html {
+            font-size: 16px;
+        }
+    }
 }
 
 @layer components {
@@ -63,7 +69,15 @@
     }
 
     .sidebar-brand {
-        @apply flex h-16 items-center border-b border-white/10 px-5;
+        @apply flex h-16 items-center gap-3 border-b border-white/10 px-5;
+    }
+
+    .sidebar-brand .brand-logo {
+        @apply min-w-0 flex-1;
+    }
+
+    .sidebar-close {
+        @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-zinc-400 transition hover:bg-zinc-800 hover:text-white;
     }
 
     .sidebar-brand .brand-logo-img {
@@ -192,7 +206,7 @@
 
     /* Dashboard */
     .dash-welcome {
-        @apply rounded-2xl border border-zinc-200/80 bg-white px-6 py-5 shadow-sm;
+        @apply rounded-2xl border border-zinc-200/80 bg-white px-4 py-5 shadow-sm sm:px-6;
     }
 
     .dash-onboard {
@@ -204,7 +218,7 @@
     }
 
     .dash-stat {
-        @apply rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm transition hover:border-zinc-300 hover:shadow-md;
+        @apply rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-sm transition hover:border-zinc-300 hover:shadow-md sm:p-5;
     }
 
     .dash-card {
@@ -216,7 +230,7 @@
     }
 
     .dash-card-head {
-        @apply flex items-center justify-between gap-4 border-b border-zinc-100 px-6 py-4;
+        @apply flex flex-col items-start gap-2 border-b border-zinc-100 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6;
     }
 
     .dash-card-title {
@@ -228,7 +242,7 @@
     }
 
     .dash-card-body {
-        @apply p-6;
+        @apply p-4 sm:p-6;
     }
 
     .dash-link {
@@ -261,7 +275,15 @@
     }
 
     .dash-row {
-        @apply flex items-center gap-4 border-t border-zinc-100 px-6 py-4 transition first:border-t-0 hover:bg-zinc-50;
+        @apply flex flex-wrap items-center gap-3 border-t border-zinc-100 px-4 py-4 transition first:border-t-0 hover:bg-zinc-50 sm:flex-nowrap sm:gap-4 sm:px-6;
+    }
+
+    .dash-row-meta {
+        @apply flex w-full items-center justify-between gap-2 sm:w-auto sm:flex-col sm:items-end;
+    }
+
+    .dash-row-badges {
+        @apply flex w-full flex-wrap items-center gap-2 sm:w-auto sm:flex-col sm:items-end;
     }
 
     .dash-avatar {
