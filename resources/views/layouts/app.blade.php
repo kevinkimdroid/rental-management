@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="theme-color" content="#1a68a5">
         <title>{{ config('app.name', 'Agile Rentals') }}</title>
+        @include('partials.favicon')
         <x-styles :include-js="true" />
     </head>
     <body class="font-sans antialiased" x-data="{ sidebarOpen: false }">

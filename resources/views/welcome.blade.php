@@ -6,6 +6,7 @@
     <meta name="description" content="Rental property management for landlords and property managers. Track properties, tenants, leases, rent, and maintenance in one place.">
     <meta name="theme-color" content="#1a68a5">
     <title>{{ config('app.name') }} — Rental Property Management</title>
+    @include('partials.favicon')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}?v=18">
 </head>
 <body>

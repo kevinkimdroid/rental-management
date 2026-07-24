@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#1a68a5">
     <title>{{ $title ?? config('app.name') }}</title>
+    @include('partials.favicon')
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}?v=6">
 </head>
 <body>
